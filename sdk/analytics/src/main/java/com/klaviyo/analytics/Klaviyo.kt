@@ -196,6 +196,8 @@ object Klaviyo {
      */
     fun getPushToken(): String? = safeCall { Registry.get<State>().pushToken }
 
+    fun getAnonymousId(): String? = safeCall { Registry.get<State>().anonymousId }
+
     /**
      * Assign an attribute to the currently tracked profile by key/value pair
      *
