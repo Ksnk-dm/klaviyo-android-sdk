@@ -61,6 +61,7 @@ internal object DeviceProperties {
     val notificationPermissionGranted: Boolean
         get() = NotificationManagerCompat.from(Registry.config.applicationContext).areNotificationsEnabled()
 
+
     val applicationId: String by lazy {
         Registry.config.applicationContext.packageName
     }
@@ -86,32 +87,12 @@ internal object DeviceProperties {
 
     fun buildEventMetaData(): Map<String, String?> = mapOf(
         "Device ID" to deviceId,
-        "Device Manufacturer" to manufacturer,
-        "Device Model" to model,
-        "OS Name" to platform,
-        "OS Version" to osVersion,
-        "SDK Name" to sdkName,
-        "SDK Version" to sdkVersion,
-        "App Name" to applicationLabel,
-        "App ID" to applicationId,
-        "App Version" to appVersion,
-        "App Build" to appVersionCode,
-        "Push Token" to Klaviyo.getPushToken()
+        "klaviyo_sdk" to sdkName
     )
 
     fun buildMetaData(): Map<String, String?> = mapOf(
         "device_id" to deviceId,
-        "manufacturer" to manufacturer,
-        "device_model" to model,
-        "os_name" to platform,
-        "os_version" to osVersion,
-        "klaviyo_sdk" to sdkName,
-        "sdk_version" to sdkVersion,
-        "app_name" to applicationLabel,
-        "app_id" to applicationId,
-        "app_version" to appVersion,
-        "app_build" to appVersionCode,
-        "environment" to getEnvironment()
+        "klaviyo_sdk" to sdkName
     )
 
     private fun getEnvironment(): String =
