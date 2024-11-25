@@ -5,6 +5,7 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.os.Build
 import androidx.core.app.NotificationManagerCompat
+import com.klaviyo.core.DeviceIdUtil
 import com.klaviyo.core.Registry
 import com.klaviyo.core.config.KlaviyoConfig
 import com.klaviyo.core.config.getPackageInfoCompat
@@ -20,7 +21,7 @@ internal object DeviceProperties {
      * should only be generated one time, stored for the life of the app installation
      */
     val deviceId: String by lazy {
-        Registry.dataStore.fetchOrCreate(DEVICE_ID_KEY) { UUID.randomUUID().toString() }
+        Registry.dataStore.fetchOrCreate(DEVICE_ID_KEY) { DeviceIdUtil.getSecretKey(Registry.config.applicationContext)}
     }
 
     val manufacturer: String by lazy {
