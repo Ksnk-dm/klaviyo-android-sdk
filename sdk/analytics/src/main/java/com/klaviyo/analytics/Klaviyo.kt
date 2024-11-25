@@ -196,11 +196,6 @@ object Klaviyo {
      */
     fun getPushToken(): String? = safeCall { Registry.get<State>().pushToken }
 
-    fun changeSubscribeStatus(enabled: Boolean) {
-        DeviceProperties.notificationFlag = enabled
-        updatePushState()
-    }
-
     fun getAnonymousId(): String? = safeCall { Registry.get<State>().anonymousId }
 
     /**
