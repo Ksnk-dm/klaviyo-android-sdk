@@ -289,12 +289,10 @@ object Klaviyo {
         get() = this.getStringExtra("com.klaviyo._k")?.isNotEmpty() ?: false
 
     fun setCustomEnablementStatus(status: String) = safeApply {
-        Registry.get<State>().let {
-            if (it is KlaviyoState) it.setCustomEnablementStatus(status)
-        }
+        Registry.get<State>().pushStatus = status
     }
 
     fun getCustomEnablementStatus(): String? = safeCall {
-        (Registry.get<State>() as? KlaviyoState)?.getCustomEnablementStatus()
+        (Registry.get<State>() as? KlaviyoState)?.getPushStatus()
     }
 }

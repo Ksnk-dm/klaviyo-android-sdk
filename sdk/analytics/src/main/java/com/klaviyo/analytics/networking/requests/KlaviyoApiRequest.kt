@@ -47,6 +47,7 @@ internal open class KlaviyoApiRequest(
         const val EVENT = "event"
         const val PUSH_TOKEN = "push-token"
         const val UNREGISTER_PUSH_TOKEN = "push-token-unregister"
+        const val ENABLED_STATUS = "enablement_status"
 
         // Headers
         const val HEADER_CONTENT = "Content-Type"

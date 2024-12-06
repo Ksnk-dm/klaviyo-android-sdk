@@ -15,7 +15,7 @@ import org.json.JSONObject
 internal class PushTokenApiRequest(
     queuedTime: Long? = null,
     uuid: String? = null,
-    private val customEnablementStatus: String? = null
+
 ) : KlaviyoApiRequest(PATH, RequestMethod.POST, queuedTime, uuid) {
 
     private companion object {
@@ -61,12 +61,11 @@ internal class PushTokenApiRequest(
         )
     }
 
-    constructor(token: String, profile: Profile, enablementStatus: String? = null) : this(
-        customEnablementStatus = enablementStatus // Передаём кастомный статус
-    ) {
+    constructor(token: String,  profile: Profile, enablementStatus: String) : this() {
         body = jsonMapOf(
             DATA to mapOf(
                 TYPE to PUSH_TOKEN,
+                ENABLEMENT_STATUS to enablementStatus,
                 ATTRIBUTES to filteredMapOf(
                     PROFILE to mapOf(*ProfileApiRequest.formatBody(profile)),
                     TOKEN to token,
@@ -81,10 +80,10 @@ internal class PushTokenApiRequest(
     override val requestBody: String?
         get() = body?.apply {
             optJSONObject(DATA)?.optJSONObject(ATTRIBUTES)?.apply {
-                put(
-                    ENABLEMENT_STATUS,
-                    customEnablementStatus
-                )
+//                put(
+//                    ENABLEMENT_STATUS,
+//                    customEnablementStatus
+//                )
                 put(
                     BACKGROUND,
                     if (DeviceProperties.backgroundDataEnabled) BG_AVAILABLE else BG_UNAVAILABLE

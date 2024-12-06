@@ -20,7 +20,7 @@ import java.util.UUID
 /**
  * Stores information on the currently active user
  */
-internal class KlaviyoState : State {
+internal class KlaviyoState(override var pushStatus: String?) : State {
 
     private val _apiKey = PersistentObservableString(API_KEY, ::broadcastChange)
     override var apiKey by _apiKey
@@ -44,13 +44,17 @@ internal class KlaviyoState : State {
 
     private val _pushState = PersistentObservableString(PUSH_STATE, ::broadcastChange)
     override var pushState by _pushState
-    private var customEnablementStatus: String? = null
 
-    fun setCustomEnablementStatus(status: String?) {
+
+    override fun setPushStatus(status: String) {
         customEnablementStatus = status
     }
 
-    fun getCustomEnablementStatus(): String? = customEnablementStatus
+    override fun getPushStatus(): String {
+        return customEnablementStatus.toString()
+    }
+
+    private var customEnablementStatus: String? = null
 
     private val _pushToken = PersistentObservableString(PUSH_TOKEN, ::broadcastChange)
     override var pushToken: String?

@@ -15,6 +15,10 @@ interface State {
     val anonymousId: String?
     var pushToken: String?
     var pushState: String?
+    var pushStatus: String?
+
+    fun setPushStatus(status: String)
+    fun getPushStatus(): String
 
     /**
      * Register an observer to be notified when state changes
