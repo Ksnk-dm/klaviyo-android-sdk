@@ -287,4 +287,14 @@ object Klaviyo {
     @Suppress("MemberVisibilityCanBePrivate")
     val Intent.isKlaviyoIntent: Boolean
         get() = this.getStringExtra("com.klaviyo._k")?.isNotEmpty() ?: false
+
+    fun setCustomEnablementStatus(status: String) = safeApply {
+        Registry.get<State>().let {
+            if (it is KlaviyoState) it.setCustomEnablementStatus(status)
+        }
+    }
+
+    fun getCustomEnablementStatus(): String? = safeCall {
+        (Registry.get<State>() as? KlaviyoState)?.getCustomEnablementStatus()
+    }
 }

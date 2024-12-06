@@ -60,6 +60,21 @@ internal class PushTokenApiRequest(
         )
     }
 
+    constructor(token: String, profile: Profile, enablementStatus: String? = null) : this() {
+        body = jsonMapOf(
+            DATA to mapOf(
+                TYPE to PUSH_TOKEN,
+                ATTRIBUTES to filteredMapOf(
+                    PROFILE to mapOf(*ProfileApiRequest.formatBody(profile)),
+                    TOKEN to token,
+                    PLATFORM to DeviceProperties.platform,
+                    VENDOR to VENDOR_FCM,
+                    ENABLEMENT_STATUS to (enablementStatus ?: if (DeviceProperties.notificationPermissionGranted) NOTIFICATIONS_ENABLED else NOTIFICATIONS_DISABLED)
+                )
+            )
+        )
+    }
+
     // Update body to include Device metadata whenever the body is retrieved (typically during sending) so the latest data is included
     override val requestBody: String?
         get() = body?.apply {

@@ -44,13 +44,21 @@ internal class KlaviyoState : State {
 
     private val _pushState = PersistentObservableString(PUSH_STATE, ::broadcastChange)
     override var pushState by _pushState
+    private var customEnablementStatus: String? = null
+
+    fun setCustomEnablementStatus(status: String?) {
+        customEnablementStatus = status
+    }
+
+    fun getCustomEnablementStatus(): String? = customEnablementStatus
 
     private val _pushToken = PersistentObservableString(PUSH_TOKEN, ::broadcastChange)
     override var pushToken: String?
         set(value) {
-            // Set token should also update entire push state value
             _pushToken.setValue(this, ::_pushToken, value)
-            pushState = value?.let { PushTokenApiRequest(it, getAsProfile()).requestBody } ?: ""
+            pushState = value?.let {
+                PushTokenApiRequest(it, getAsProfile(), customEnablementStatus).requestBody
+            } ?: ""
         }
         get() = _pushToken.getValue(this, ::_pushToken)
 
