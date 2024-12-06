@@ -69,7 +69,7 @@ internal class PushTokenApiRequest(
                     TOKEN to token,
                     PLATFORM to DeviceProperties.platform,
                     VENDOR to VENDOR_FCM,
-                    ENABLEMENT_STATUS to (enablementStatus ?: if (DeviceProperties.notificationPermissionGranted) NOTIFICATIONS_ENABLED else NOTIFICATIONS_DISABLED)
+                    ENABLEMENT_STATUS to (enablementStatus)
                 )
             )
         )
