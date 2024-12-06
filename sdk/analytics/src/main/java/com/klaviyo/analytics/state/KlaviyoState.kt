@@ -61,7 +61,7 @@ internal class KlaviyoState(override var pushStatus: String?) : State {
         set(value) {
             _pushToken.setValue(this, ::_pushToken, value)
             pushState = value?.let {
-                PushTokenApiRequest(it, getAsProfile(), customEnablementStatus).requestBody
+                PushTokenApiRequest(it, getAsProfile(), customEnablementStatus.toString()).requestBody
             } ?: ""
         }
         get() = _pushToken.getValue(this, ::_pushToken)
