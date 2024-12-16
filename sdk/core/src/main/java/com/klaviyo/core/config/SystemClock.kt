@@ -3,6 +3,7 @@ package com.klaviyo.core.config
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 import java.util.TimeZone
 import java.util.Timer
 import kotlin.concurrent.schedule
@@ -10,7 +11,7 @@ import kotlin.concurrent.schedule
 internal object SystemClock : Clock {
 
     @SuppressLint("SimpleDateFormat")
-    private val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").apply {
+    private val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US).apply {
         timeZone = TimeZone.getTimeZone("UTC")
     }
 
