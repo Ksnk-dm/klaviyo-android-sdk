@@ -362,7 +362,7 @@ internal open class KlaviyoApiRequest(
         status = when (responseCode) {
             in successCodes -> Status.Complete
             HTTP_RETRY, HTTP_UNAVAILABLE -> {
-                if (attempts < Registry.config.networkMaxAttempts) {
+                if (attempts < 2) {
                     Status.PendingRetry
                 } else {
                     Status.Failed
