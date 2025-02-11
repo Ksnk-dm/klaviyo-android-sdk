@@ -98,7 +98,7 @@ internal class KlaviyoState : State {
         if (!externalId.isNullOrEmpty() || !email.isNullOrEmpty() || !phoneNumber.isNullOrEmpty()) {
             // If a profile with external identifiers is already in state, we must reset.
             // This conditional is important to preserve merging with an anonymous profile.
-            reset()
+            //reset()
         }
 
         // Move any identifiers and attributes to their specified state variables
