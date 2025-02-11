@@ -147,7 +147,7 @@ internal class KlaviyoState : State {
         _anonymousId.reset()
         _attributes.reset()
 
-        broadcastChange(null, oldProfile)
+            //  broadcastChange(null, oldProfile)
         Registry.log.verbose("Reset internal user state")
     }
 
