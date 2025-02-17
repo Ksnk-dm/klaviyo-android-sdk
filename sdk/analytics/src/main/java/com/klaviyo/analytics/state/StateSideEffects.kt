@@ -91,10 +91,10 @@ internal class StateSideEffects(
      */
     private fun flushProfile() = pendingProfile?.let {
         timer?.cancel()
-        Registry.log.verbose("Flushing profile update")
-        enqueueTokenOrProfile(it.copy())
-        state.resetAttributes() // Once captured in a request, we don't keep profile attributes in state/on disk
-        pendingProfile = null
+//        Registry.log.verbose("Flushing profile update")
+//        enqueueTokenOrProfile(it.copy())
+//        state.resetAttributes() // Once captured in a request, we don't keep profile attributes in state/on disk
+//        pendingProfile = null
     }
 
     /**
