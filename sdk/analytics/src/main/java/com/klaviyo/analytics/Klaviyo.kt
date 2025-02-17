@@ -221,7 +221,10 @@ object Klaviyo {
      * This should be called whenever an active user in your app is removed
      * (e.g. after a logout)
      */
-    fun resetProfile() = safeApply { Registry.get<State>().reset() }
+    fun resetProfile() = safeApply {
+        Registry.get<State>().reset()
+        preInitQueue.clear()
+    }
 
     /**
      * Creates an [Event] associated with the currently tracked profile
