@@ -7,7 +7,7 @@ package com.klaviyo.analytics.model
  * @property name String that represents the name of the metric
  */
 sealed class EventMetric(name: String) : Keyword(name) {
-    internal object OPENED_PUSH : EventMetric("\$opened_push")
+    internal object OPENED_PUSH : EventMetric("Opened Push")
 
     object OPENED_APP : EventMetric("Opened App")
     object VIEWED_PRODUCT : EventMetric("Viewed Product")
