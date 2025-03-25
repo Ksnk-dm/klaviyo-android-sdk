@@ -93,10 +93,8 @@ internal object DeviceProperties {
         )
 
     fun buildMetaData(): Map<String, String?> = mapOf(
-        "Device ID" to deviceId,
-        "SDK Name" to sdkName,
-        "OS Name" to platform,
-        "App Version" to appVersion
+        "device_id" to deviceId,
+        "klaviyo_sdk" to sdkName
     )
 
     private fun getEnvironment(): String =
